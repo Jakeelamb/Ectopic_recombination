@@ -22,3 +22,5 @@ conda create env -f environment.yml
 -genometools
 -bowtie2
 -samtools
+-sratoolkit
+-ncbi-cli-dataset
