@@ -2,7 +2,7 @@
 
 ## Authors 
 Jacob Lamb 
-Jacob.Lamb@colostate.edu
+Email: Jacob.Lamb@colostate.edu
 ## Installation
 
 Clone the github repo
