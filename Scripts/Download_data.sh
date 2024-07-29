@@ -95,5 +95,5 @@ SRX19952863
 
 #First prefetch the accensions:
 prefetch -O ./Data/Rawreads -f {accension}
-fasterq-dump --split-files {accension}
+fastq-dump --split-files {accension}
 
