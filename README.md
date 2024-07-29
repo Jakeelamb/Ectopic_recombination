@@ -1,10 +1,10 @@
 # Ectopic_Recombination_Calculator
+This pipeline is designed to run on a HPC using slurm. 
 
 ## Authors 
 Jacob Lamb 
 Email: Jacob.Lamb@colostate.edu
 ## Installation
-
 Clone the github repo
 ```
 git clone https://github.com/Jakeelamb/Ectopic_recombination
