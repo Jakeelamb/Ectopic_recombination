@@ -2,7 +2,8 @@
 This pipeline is designed to run on a HPC cluster using slurm. 
 
 ## Authors 
-Jacob Lamb 
+Jacob Lamb
+
 Email: Jacob.Lamb@colostate.edu
 ## Installation
 Clone the github repo
