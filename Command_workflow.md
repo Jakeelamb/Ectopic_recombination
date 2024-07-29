@@ -63,15 +63,26 @@ gt ltrdigest -outfileprefix "$filename" "${filename}_sorted.gff3" "$filename"
 
 6.) Prep files and directories for coverage analysis
 
-#Create a directory for each genome
+#Create a directory for each genome & Split the multi fasta-file into individual files
 
+grep ">" $filename_complete.fasta > headers.txt
 
-#Split the multi fasta-file into individual files 
-
+for line in headers.txt; do
+mkdir $line
+faSplit byname $filename_complete.fasta $line/ ;
+done
 
 7.) Index and calculate coverage for every LTR
 
+bowtie2-build $line
 
+bowite2 -1 $trimmed_read1 -2 $trimmed_read2 -x ltr_index  -L 20 --very-sensitive-local -p 14 > $genome_name.sam
+
+#Need to still figure out how to do the coverage
+
+opt 1: bedtools coverage (coord : coord) for both ltr and internal extracted from gff3
+
+opt 2: bedtools genomecov for and provide the entire LTR as the genome
 
 
 

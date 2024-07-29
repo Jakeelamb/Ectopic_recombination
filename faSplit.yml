@@ -1,0 +1,6 @@
+name: faplit
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+prefix: /nfs/home/jlamb/bin/miniconda3/envs/faplit
