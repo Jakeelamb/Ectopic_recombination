@@ -1,5 +1,5 @@
 # Ectopic_Recombination_Calculator
-This pipeline is designed to run on a HPC using slurm. 
+This pipeline is designed to run on a HPC cluster using slurm. 
 
 ## Authors 
 Jacob Lamb 
@@ -11,7 +11,7 @@ git clone https://github.com/Jakeelamb/Ectopic_recombination
 ```
 Install the conda environemt
 ```
-conda create env -f environment.yml
+conda create env -f ERC.yml
 ```
 Download the Raw-reads, Genomes, & Reference Mito Genome
 ```
