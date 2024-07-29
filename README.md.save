@@ -1,0 +1,64 @@
+# Ectopic_Recombination_Calculator
+
+## Authors 
+Jacob Lamb 
+Email: Jacob.Lamb@colostate.edu
+## Installation
+
+Clone the github repo
+```
+git clone https://github.com/Jakeelamb/Ectopic_recombination
+```
+Install the conda environemt
+```
+conda create env -f environment.yml
+```
+## PipeLine Overview
+<img width="2210" alt="Untitled" src="https://github.com/user-attachments/assets/5f2afef5-6222-444f-a2a5-7eefa8e75bd7">
+
+## Software
+-dnaPipeTE
+-Dante
+-genometools
+-bowtie2
+-samtools
+-sratoolkit
+-ncbi-cli-dataset
+
+## Steps of Pipeline
+
+### 1.) Obtain the Raw Data (Genomes & Raw Reads) & mito genome
+*Make a single download script 
+- if the genomes and raw reads exist in the Data directory,
+	echo "Raw data exists and is ready to process"
+	continue
+- if not, 
+	./sra_grab.sh
+	./genome_fetch.sh
+
+### 2.) Trim and filter the Reads 
+-input data is raw_reads
+#### Trim
+-fastp default parameters
+-index_and_map
+	./trim_and_filter.sh
+#### Index, Map, & remove Mito
+- if index exists for file,
+	continue:
+- if not, 
+	##### index the mito
+	bowtie2 index $mito genome
+
+##### map reads to mito index
+- bowtie2 map reads to mito genome
+##### convert sam to bam and sort
+- samtools view -bS
+- samtools sort
+##### convert bam to fastq
+- samtools fastq 
+
+### 3.) run dnaPipeTE to 
+- run dnaPipeTE
+	./dnaPipeTE.sh
+
+### 4.) 
