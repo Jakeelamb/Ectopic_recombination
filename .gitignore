@@ -10,3 +10,6 @@
 .gff3
 .gz
 .img
+.log
+.nextflow*
+.*

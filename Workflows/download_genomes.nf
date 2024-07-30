@@ -1,34 +1,41 @@
 #!/usr/bin/env nextflow
-
 nextflow.enable.dsl=2
 
 // Define the input channel from the Lookup_table.txt file
 lookup_ch = Channel
     .fromPath('Lookup_table.txt')
     .splitCsv(header: true, sep: '\t')
-    .map { row -> tuple(row.Species, row.Genome_Accension) }
+    .map { row -> tuple(row.Species, row.Genome_Accession) }
 
-process Download_genomes{
+process download_genomes {
     conda 'ERC'
+    cpus 2
+    time '2h'
+    errorStrategy 'retry'
+    maxRetries 3
     
-    cpus 1
-    time '1h'
-    clusterOptions = "--job-name=download_{species}"   
- 
+    clusterOptions = "--job-name=download_${species}"
+    
     input:
     tuple val(species), val(accession)
     
     output:
-    path "${species}.zip"
-   
-    publishDir params.genome_dir, mode: 'copy' 
-   
+    path "${species.replaceAll(/[^a-zA-Z0-9]+/, '_')}.zip", emit: genome_zip
+    
+    publishDir params.genome_dir, mode: 'copy'
+    
     script:
     """
-    datasets download genome accession ${accession} --filename ${species}.zip
+    safe_species=\$(echo "${species}" | sed 's/[^a-zA-Z0-9]/_/g')
+    datasets download genome accession ${accession} --filename \${safe_species}.zip
+    
+    if [ ! -f \${safe_species}.zip ]; then
+        echo "Download failed for ${species}"
+        exit 1
+    fi
     """
 }
 
 workflow {
-    Download_genomes(lookup_ch)
+    download_genomes(lookup_ch)
 }
