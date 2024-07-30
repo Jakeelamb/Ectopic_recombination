@@ -26,5 +26,3 @@ workflow {
     coverage_analysis()
     ectopic_recomb()
 }
-
-/This is the main_workflow script
