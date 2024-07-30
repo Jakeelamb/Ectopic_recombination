@@ -11,7 +11,7 @@ Clone the github repo
 git clone https://github.com/Jakeelamb/Ectopic_recombination
 ```
 Install the conda environemt
-```
+#```
 conda env create -f ERC.yml
 conda env create -f faSplit.yml
 ```
@@ -23,7 +23,7 @@ cd Ectopic_recombination
 ```
 Run the Nextflow script
 ```
-nextflow run 
+nextflow run workflows/main.nf -c configs/nextflow.config -profile slurm 
 ```
 
 ## PipeLine Overview
@@ -71,6 +71,25 @@ nextflow run
 | D.welteri | SRX19958882 | GCA_030264495.1 |
 | D.wrighti | SRX19958881 | GCA_030265035.1 |
 
+## Directory Strucuture
+project_root/
+│
+├── workflows/
+│   ├── main.nf
+│   ├── download_genomes.nf
+│   ├── script2.nf
+│   ├── script3.nf
+│   └── ...
+│
+├── configs/
+│   └── nextflow.config
+│
+├── bin/
+│   └── (any custom scripts or binaries)
+│
+└── data/
+    └── Lookup_table.txt
+
 ## Software
 -dnaPipeTE
 -Dante
@@ -79,3 +98,6 @@ nextflow run
 -samtools
 -sratoolkit
 -ncbi-cli-dataset
+-fastp
+-faSplit
+-bedtools
