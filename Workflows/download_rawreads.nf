@@ -5,7 +5,7 @@ nextflow.enable.dsl=2
 lookup_ch = Channel
     .fromPath('Lookup_table.txt')
     .splitCsv(header: true, sep: '\t')
-    .map { row -> tuple(row.Species, row.SRA_Accession) }
+    .map { row ->  val(row.SRA_Accession) }
 
 process download_rawreads {
     conda 'ERC'
@@ -14,19 +14,19 @@ process download_rawreads {
     errorStrategy 'retry'
     maxRetries 3
 
-    clusterOptions = "--job-name=SRA_fetch_${species}"
+    clusterOptions = "--job-name=SRA_fetch"
 
     input:
-    tuple val(species), val(accession)
+    val(accession)
 
     output:
-    tuple val(species), path("${accession}*.fastq"), emit: fastq_files
+    path("${accession}*.fastq"), emit: fastq_files
 
-    publishDir params.rawreads_dir, mode: 'copy'
+    publishDir ${rawreads_dir}, mode: 'copy'
 
     script:
     """
-    mkdir -p ${params.rawreads_dir}
+    mkdir -p ${rawreads_dir}
     prefetch -O ${params.rawreads_dir} -f yes ${accession}
     fastq-dump --outdir ${params.rawreads_dir} --split-files ${accession}
     """
