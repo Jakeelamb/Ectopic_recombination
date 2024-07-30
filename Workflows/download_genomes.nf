@@ -8,7 +8,7 @@ lookup_ch = Channel
     .splitCsv(header: true, sep: '\t')
     .map { row -> tuple(row.Species, row.Genome_Accension) }
 
-process Download_genome {
+process Download_genomes{
     conda 'ERC'
     
     cpus 1
@@ -30,5 +30,5 @@ process Download_genome {
 }
 
 workflow {
-    Download_genome(lookup_ch)
+    Download_genomes(lookup_ch)
 }

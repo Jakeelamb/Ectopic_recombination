@@ -18,10 +18,13 @@ conda env create -f faSplit.yml
 
 ## Run the Pipeline
 Enter the directory
+
 ```
 cd Ectopic_recombination
 ```
+
 Pull the dnaPipeTE singularity image
+
 ```
 singularity pull --name /Data/Misc/dnapipete.img docker://clemgoub/dnapipete:latest
 ```

@@ -6,29 +6,30 @@ nextflow.enable.dsl=2
 lookup_ch = Channel
     .fromPath('Lookup_table.txt')
     .splitCsv(header: true, sep: '\t')
-    .map { row -> tuple(row.Species, row.Genome_Accension) }
+    .map { row -> tuple(row.Species, row.SRA_Accension) }
 
-process DOWNLOAD_GENOME {
+process Download_rawreads {
     conda 'ERC'
     
     cpus 1
-    time '1h'
-    clusterOptions = "--job-name=download_{species}"   
+    time '2h'
+    clusterOptions = "--job-name=SRA_fetch_{species}"   
  
     input:
     tuple val(species), val(accession)
     
     output:
-    path "${species}.zip"
-   
-    publishDir params.genome_dir, mode: 'copy' 
+    path
+ 
+    publishDir params.rawreads_dir, mode: 'copy' 
    
     script:
     """
-    datasets download genome accession ${accession} --filename ${species}.zip
+    prefetch -O ./Data/Rawreads -f {accension}
+    fastq-dump --split-files {accension}
     """
 }
 
 workflow {
-    DOWNLOAD_GENOME(lookup_ch)
+    Download_rawreads(lookup_ch)
 }
