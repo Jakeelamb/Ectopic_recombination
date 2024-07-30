@@ -12,7 +12,8 @@ git clone https://github.com/Jakeelamb/Ectopic_recombination
 ```
 Install the conda environemt
 ```
-conda create env -f ERC.yml
+conda env create -f ERC.yml
+conda env create -f faSplit.yml
 ```
 Download the Raw-reads, Genomes, & Reference Mito Genome
 ```
