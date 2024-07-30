@@ -15,13 +15,15 @@ Install the conda environemt
 conda env create -f ERC.yml
 conda env create -f faSplit.yml
 ```
-Download the Raw-reads, Genomes, & Reference Mito Genome
+
+## Run the Pipeline
+Enter the directory
 ```
-sbatch Download_Data.sh
+cd Ectopic_recombination
 ```
 Run the Nextflow script
 ```
-nextflow run ERC.nf Ectopic_rembination_calc.config -profile conda --input_reads Data/Raw_reads/
+nextflow run 
 ```
 
 ## PipeLine Overview
