@@ -21,6 +21,11 @@ Enter the directory
 ```
 cd Ectopic_recombination
 ```
+Pull the dnaPipeTE singularity image
+```
+singularity pull --name /Data/Misc/dnapipete.img docker://clemgoub/dnapipete:latest
+```
+
 Run the Nextflow script
 ```
 nextflow run workflows/main.nf -c configs/nextflow.config -profile slurm 

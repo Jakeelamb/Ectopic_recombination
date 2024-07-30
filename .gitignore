@@ -1,0 +1,12 @@
+#ignoring specific files
+.env
+.fasta
+.o
+.e
+.err
+.fq
+.sam
+.bam
+.gff3
+.gz
+.img

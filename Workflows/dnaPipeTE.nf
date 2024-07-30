@@ -10,25 +10,32 @@ lookup_ch = Channel
 
 process DOWNLOAD_GENOME {
     conda 'ERC'
-    
-    cpus 1
-    time '1h'
-    clusterOptions = "--job-name=download_{species}"   
+    cpus 16
+    clusterOptions = "--job-name=dnaPipeTE_{species}"   
  
     input:
     tuple val(species), val(accession)
     
     output:
-    path "${species}.zip"
+    path ""
    
     publishDir params.genome_dir, mode: 'copy' 
    
     script:
     """
-    datasets download genome accession ${accession} --filename ${species}.zip
+    
+
+
+
+
+
+
+
+
+
     """
 }
 
 workflow {
-    DOWNLOAD_GENOME(lookup_ch)
+    dnaPipeTE(lookup_ch)
 }
