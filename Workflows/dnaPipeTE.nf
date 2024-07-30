@@ -8,7 +8,7 @@ lookup_ch = Channel
     .splitCsv(header: true, sep: '\t')
     .map { row -> tuple(row.Species, row.Genome_Accension) }
 
-process DOWNLOAD_GENOME {
+process dnaPipeTE {
     conda 'ERC'
     cpus 16
     clusterOptions = "--job-name=dnaPipeTE_{species}"   
