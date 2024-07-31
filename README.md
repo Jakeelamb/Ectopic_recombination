@@ -35,7 +35,7 @@ nextflow run workflows/main.nf -c configs/nextflow.config -profile slurm
 ```
 
 ## PipeLine Overview
-<img width="2210" alt="Untitled" src="https://github.com/user-attachments/assets/5f2afef5-6222-444f-a2a5-7eefa8e75bd7">
+<img width="2210" alt="Untitled" src="https://github.com/user-attachments/assets/4f2afef5-6222-444f-a2a5-7eefa8e75bd7">
 
 ## Species Table
 | Species | SRA Accession | Genome Accession |
